@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 
 export default class Sidebar extends Component {
+    toggleSidebar() {
+        this.props.onToggle()
+    }
     render() {
         return (
             <div className="App-sidebar">
+                { this.props.showSidebar &&
                 <div className="sidebar-open">
                     <div className="sidebar-header">
                         <h2>Mac public </h2>
@@ -14,12 +18,16 @@ export default class Sidebar extends Component {
                         <li>工作</li>
                     </ul>
                     <input type="text" value='新增列表'/>
-                    <button>收缩</button>
+                    <button onClick={this.toggleSidebar.bind(this)}>收缩</button>
                 </div>
+                }
+                {!this.props.showSidebar &&
                 <div className="sidebar-close">
                     <span>图像</span>
-                    <button>展开</button>
+                    <button onClick={this.toggleSidebar.bind(this)}>展开</button>
                 </div>
+                }
+
             </div>
         )
     }
