@@ -4,8 +4,8 @@ export default class Sidebar extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            todoList: [
-                {catgory: '家务'}
+            catgory: [
+               '家务'
             ]
         }
     }
@@ -19,9 +19,8 @@ export default class Sidebar extends Component {
     submit(e) {
         console.log('提交新list')
         if (e.key === 'Enter') {
-
-            let list = {catgory: e.target.value}
-            this.state.todoList.push(list)
+            let list =  e.target.value
+            this.state.catgory.push(list)
             this.setState(this.state)
         }
     }
@@ -29,7 +28,7 @@ export default class Sidebar extends Component {
         console.log('删除这个list')
     }
     render() {
-        let lists = this.state.todoList
+        let lists = this.state.catgory
         return (
             <div className="App-sidebar">
                 { this.props.showSidebar &&
@@ -47,17 +46,15 @@ export default class Sidebar extends Component {
                     <ul className="sidebar-todolist">
                         <li>所有</li>
                         {lists.map((list, index) => {
-                                return (
-                                    <li key={index}>
-                                        <div>
-                                            <span className="list-catgory">{list.catgory}</span>
-                                            <button onClick={this.delete.bind(this)}>删除</button>
-                                        </div>
-                                    </li>
-                                )
-
-                        }
-                        )}
+                            return (
+                                <li key={index}>
+                                    <div>
+                                        <span className="list-catgory">{list}</span>
+                                        <button onClick={this.delete.bind(this)}>删除</button>
+                                    </div>
+                                </li>
+                            )
+                        })}
                     </ul>
                     <button onClick={this.toggleSidebar.bind(this)}>收缩</button>
                 </div>
