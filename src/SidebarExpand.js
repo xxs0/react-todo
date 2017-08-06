@@ -11,9 +11,6 @@ export default class SidebarExpand extends Component {
     submit(e) {
         console.log('提交新list')
         if (e.key === 'Enter') {
-            // let list =  e.target.value
-            // this.state.catgory.push(list)
-            // this.setState(this.state)
             this.props.onSubmit(e)
         }
     }

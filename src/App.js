@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import SidebarExpand from "./SidebarExpand";
-import ContentTodoItem from "./ContentTodoItem";
-
+import ContentTodoItemContainer from "./ContentTodoItemContainer";
+import TodoInput from "./TodoInput"
 
 class App extends Component {
     constructor(props) {
@@ -57,10 +57,11 @@ class App extends Component {
             newTodo: '',
             todoList: this.state.todoList
         })
+
     }
-    toggleTodo(e,todo){
-        console.log('标记')
-        todo.status = todo.status === 'completed' ? '' : 'completed'
+    toggleTodo(e){
+        console.log('标记todo')
+        e.status = e.status === 'completed' ? '' : 'completed'
         this.setState(this.state)
     }
     filter () {
@@ -87,10 +88,16 @@ class App extends Component {
           </div>
           <div className="App-content">
               <h1>我的待办</h1>
-              <ContentTodoItem todos={this.state.todoList}
+              <h4>工作</h4>
+              <TodoInput content={this.state.newTodo}
+                         onChange={this.changeTitle.bind(this)}
+                         onSubmit={this.addTodo.bind(this)}
+              />
+              <ContentTodoItemContainer todos={this.state.todoList}
                                content={this.state.newTodo}
                                onChange={this.changeTitle.bind(this)}
                                onSubmit={this.addTodo.bind(this)}
+                               onToggle={this.toggleTodo.bind(this)}
               />
           </div>
       </div>
