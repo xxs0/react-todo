@@ -4,8 +4,8 @@ import SidebarExpand from "./SidebarExpand";
 import TodoInput from "./TodoInput"
 import ContentNav from './ContentNav'
 import TodoItems from './TodoItems'
-
-
+import * as localStore from './localStorage'
+import 'font-awesome/css/font-awesome.min.css'
 class App extends Component {
     constructor(props) {
         super(props)
@@ -13,10 +13,8 @@ class App extends Component {
             newList: '列表',
             showSidebar: true,
             newTodo: 'todo',
-            catgory: [
-                '家务'
-            ],
-            todoList: [
+            catgory: localStore.load('catgory') || ['家务'],
+            todoList: localStore.load('todolist') || [
                 // {id: 1, title: 'test', status: '', delete:false, catgory:''}
             ],
             currentCatgory:''
@@ -104,6 +102,10 @@ class App extends Component {
             default: break
         }
     }
+  componentDidUpdate() {
+      localStore.save('catgory', this.state.catgory)
+      localStore.save('todolist', this.state.todoList)
+  }
   render() {
     return (
       <div className="App">
@@ -125,7 +127,7 @@ class App extends Component {
           </div>
           <div className="App-content">
               <h1>我的待办</h1>
-              <h4>工作</h4>
+              {/*<h4>工作</h4>*/}
               <TodoInput content={this.state.newTodo}
                          catgory={this.state.catgory[0]}
                          onChange={this.changeTitle.bind(this)}

@@ -22,7 +22,6 @@ import React, {Component} from 'react'
 
 export default function(props) {
     return (
-
             <ol className="App-content-todoitem">
                 <input type="checkbox" checked={props.todo.status === 'completed'}
                        onChange={props.onToggle.bind(null, props.todo)}

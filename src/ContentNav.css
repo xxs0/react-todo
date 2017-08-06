@@ -1,0 +1,7 @@
+.App-content-nav {
+    display: flex;
+}
+.App-content-nav>li {
+    flex: 1;
+    width: 50px;
+}

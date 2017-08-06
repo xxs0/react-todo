@@ -11,6 +11,34 @@
 
 .App-sidebar {
   max-width: 400px;
-  /*flex: 2;*/
+  min-height: 100vh;
 }
 
+
+.sidebar-close {
+
+}
+
+.sidebar-close span {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+}
+
+.App-content h1 {
+  background-color: #fdcc33;
+  padding: 10px 5px;
+}
+
+.App-content > input {
+  /*min-width: 500px;*/
+  margin: 12px 12px;
+  min-width: 100%;
+  height: 40px;
+  border: 0;
+  background: blueviolet;
+  display: block;
+  font-size: 28px;
+}

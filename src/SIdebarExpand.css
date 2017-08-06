@@ -1,0 +1,50 @@
+.sidebar-header {
+    position: relative;
+}
+.sidebar-header h2{
+    font-size: 2em;
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
+.sidebar-header button.logout {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    /*font-size: 16px;*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 3px 6px;
+}
+.input-wrapper {
+    display: flex;
+    padding: 0.6em 1.2em;
+    background-color: cadetblue;
+}
+.input-wrapper > input {
+    display: block;
+    flex: 1;
+    border: 0;
+    font-size: 20px;
+    height: 46px;
+}
+
+.sidebar-todolist {
+    font-size: 16px;
+    padding: .4em 1.2em .2em;
+}
+.sidebar-todolist li {
+    padding: .3em .2em;
+}
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.list-group-item>i {
+    flex: 1;
+}
+.list-group-item>span {
+    text-align: left;
+    flex: 10;
+}

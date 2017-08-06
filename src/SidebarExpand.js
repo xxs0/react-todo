@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import './SIdebarExpand.css'
 export default class SidebarExpand extends Component {
     toggleSidebar() {
         this.props.onToggle()
@@ -28,13 +28,16 @@ export default class SidebarExpand extends Component {
         let lists = this.props.lists
             .map((list, index) => {
                 return (
-                    <li key={index}>
-                        <div>
-                            <span className="list-catgory"
-                                  onClick={this.takeAList.bind(this,list)}
-                            >{list}</span>
-                            <button>删除</button>
-                        </div>
+                    <li key={index} className="list-group-item">
+                        <i className="fa fa-folder fa-fw" aria-hidden="true"></i>
+                        <span className="list-catgory"
+                              onClick={this.takeAList.bind(this,list)}>
+                            {list}
+                        </span>
+                        <i className="fa fa-trash" aria-hidden="true">
+                            <button onClick={this.delete.bind(this)}></button>
+                        </i>
+
                     </li>
                 )
             })
@@ -42,7 +45,7 @@ export default class SidebarExpand extends Component {
             <div className="sidebar-open">
                 <div className="sidebar-header">
                     <h2>Mac public</h2>
-                    <button>登出</button>
+                    <button className="logout">登出</button>
                 </div>
                 <div className="input-wrapper">
                     <input type="text" value={this.props.content}
@@ -50,7 +53,7 @@ export default class SidebarExpand extends Component {
                            onKeyDown={this.submit.bind(this)}
                     />
                 </div>
-                <ul className="sidebar-todolist">
+                <ul className="sidebar-todolist list-group">
                     {/*<li>*/}
                         {/*<div>*/}
                             {/*<span className="list-catgory">所有</span>*/}

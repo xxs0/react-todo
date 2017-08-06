@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import './ContentNav.css'
 export default class ContentNav extends Component {
     render() {
         return (
