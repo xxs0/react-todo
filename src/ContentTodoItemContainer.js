@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import TodoItem from "./TodoItem";
+import TodoItems from "./TodoItems";
 import ContentNav from './ContentNav'
 
 export default class ContentTodoItem extends Component {
@@ -7,6 +7,26 @@ export default class ContentTodoItem extends Component {
         super(props)
         this.state = {
             navTab: 0
+        }
+    }
+    handleTabChange = (index) => {
+        this.setState({
+            navTab: index
+        })
+    }
+    renderContent() {
+        switch (this.state.navTab) {
+            case 0:
+                return <TodoItems todos={this.props.todos}
+                                  onToggle={this.props.onToggle.bind(this)}
+                />
+                break
+            case 1:
+                return <TodoItems todos={this.props.todos.filter(todo => !todo.status)}/>
+                break
+            case 2:
+                return <TodoItems todos={this.props.todos.filter(todo => todo.status)}/>
+            default: break
         }
     }
     changeTitle(e) {
@@ -18,28 +38,15 @@ export default class ContentTodoItem extends Component {
             this.props.onSubmit(e)
         }
     }
-    toggle(e) {
-        console.log(this.props)
-        this.props.onToggle(e, this.props.todo)
-    }
 
 
     render() {
-        let todos = this.props.todos.map((todo, index) => {
-            return (
-                <li key={index}>
-                    <TodoItem todo={todo}
-                               onToggle={this.props.onToggle}
-                    />
-                </li>
-            )
-        })
         return (
             <div>
-                <ContentNav/>
-                <ol className="App-content-todoitem">
-                    {todos}
-                </ol>
+                <ContentNav navTab={this.state.navTab}
+                            onTabChange={this.handleTabChange}
+                />
+                {this.renderContent()}
             </div>
         )
     }

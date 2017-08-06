@@ -23,13 +23,13 @@ import React, {Component} from 'react'
 export default function(props) {
     return (
 
-            <div>
+            <ol className="App-content-todoitem">
                 <input type="checkbox" checked={props.todo.status === 'completed'}
                        onChange={props.onToggle.bind(null, props.todo)}
                 />
                 <span>{props.todo.title}</span>
                 <button>删除</button>
-            </div>
+            </ol>
         )
 
 }

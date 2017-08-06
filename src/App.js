@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
 import SidebarExpand from "./SidebarExpand";
-import ContentTodoItemContainer from "./ContentTodoItemContainer";
 import TodoInput from "./TodoInput"
+import ContentNav from './ContentNav'
+import TodoItems from './TodoItems'
+
 
 class App extends Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class App extends Component {
             ],
             todoList: [
                 {id: 1, title: 'test', status: '', delete:false, catgory:''}
-            ]
+            ],
+            navTab: 0
         }
     }
     toggleSidebar() {
@@ -57,7 +60,7 @@ class App extends Component {
             newTodo: '',
             todoList: this.state.todoList
         })
-
+        console.log(this.state)
     }
     toggleTodo(e){
         console.log('标记todo')
@@ -66,9 +69,33 @@ class App extends Component {
     }
     filter () {
     }
+
+    handleTabChange = (index) => {
+        this.setState({
+            navTab: index
+        })
+        console.log('tab切换：', this.state.navTab)
+    }
+    renderContent() {
+        switch (this.state.navTab) {
+            case 0:
+                return <TodoItems todos={this.state.todoList}
+                                  onToggle={this.toggleTodo.bind(this)}
+                />
+                break
+            case 1:
+                return <TodoItems todos={this.state.todoList.filter(todo => !todo.status)}
+                                  onToggle={this.toggleTodo.bind(this)}
+                />
+                break
+            case 2:
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.status)}
+                                  onToggle={this.toggleTodo.bind(this)}
+                />
+            default: break
+        }
+    }
   render() {
-
-
     return (
       <div className="App">
           <div className="App-sidebar">
@@ -93,12 +120,17 @@ class App extends Component {
                          onChange={this.changeTitle.bind(this)}
                          onSubmit={this.addTodo.bind(this)}
               />
-              <ContentTodoItemContainer todos={this.state.todoList}
-                               content={this.state.newTodo}
-                               onChange={this.changeTitle.bind(this)}
-                               onSubmit={this.addTodo.bind(this)}
-                               onToggle={this.toggleTodo.bind(this)}
+              {/*<ContentTodoItemContainer todos={this.state.todoList}*/}
+                               {/*content={this.state.newTodo}*/}
+                               {/*onChange={this.changeTitle.bind(this)}*/}
+                               {/*onSubmit={this.addTodo.bind(this)}*/}
+                               {/*onToggle={this.toggleTodo.bind(this)}*/}
+              {/*/>*/}
+
+              <ContentNav navTab={this.state.navTab}
+                          onTabChange={this.handleTabChange}
               />
+              {this.renderContent()}
           </div>
       </div>
     )
