@@ -20,13 +20,19 @@ export default class SidebarExpand extends Component {
     filter() {
 
     }
+    takeAList(e) {
+        console.log('take')
+        this.props.onChoose(e)
+    }
     render() {
         let lists = this.props.lists
             .map((list, index) => {
                 return (
                     <li key={index}>
                         <div>
-                            <span className="list-catgory">{list}</span>
+                            <span className="list-catgory"
+                                  onClick={this.takeAList.bind(this,list)}
+                            >{list}</span>
                             <button>删除</button>
                         </div>
                     </li>
@@ -45,11 +51,11 @@ export default class SidebarExpand extends Component {
                     />
                 </div>
                 <ul className="sidebar-todolist">
-                    <li>
-                        <div>
-                            <span className="list-catgory">所有</span>
-                        </div>
-                    </li>
+                    {/*<li>*/}
+                        {/*<div>*/}
+                            {/*<span className="list-catgory">所有</span>*/}
+                        {/*</div>*/}
+                    {/*</li>*/}
                     {lists}
                 </ul>
                 <button onClick={this.toggleSidebar.bind(this)}>收缩</button>

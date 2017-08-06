@@ -17,8 +17,10 @@ class App extends Component {
                 '家务'
             ],
             todoList: [
-                {id: 1, title: 'test', status: '', delete:false, catgory:''}
+                // {id: 1, title: 'test', status: '', delete:false, catgory:''}
             ],
+            currentCatgory:''
+            ,
             navTab: 0
         }
     }
@@ -39,6 +41,12 @@ class App extends Component {
             newTodo:e.target.value
         })
     }
+    changeCurrentList(e) {
+        console.log(e)
+        this.setState({
+            currentCatgory: e
+        })
+    }
     addList(e){
         let list = e.target.value
         this.state.catgory.push(list)
@@ -48,12 +56,13 @@ class App extends Component {
         })
     }
     addTodo(e) {
-        console.log('增加:', e.target.value)
+        console.log('增加:', e.target.value, e)
         let todo = {
             id: idMaker(),
             title: e.target.value,
             status: '',
-            delete: false
+            delete: false,
+            catgory: this.state.currentCatgory
         }
         this.state.todoList.push(todo)
         this.setState({
@@ -79,17 +88,17 @@ class App extends Component {
     renderContent() {
         switch (this.state.navTab) {
             case 0:
-                return <TodoItems todos={this.state.todoList}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory)}
                                   onToggle={this.toggleTodo.bind(this)}
                 />
                 break
             case 1:
-                return <TodoItems todos={this.state.todoList.filter(todo => !todo.status)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && !todo.status)}
                                   onToggle={this.toggleTodo.bind(this)}
                 />
                 break
             case 2:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.status)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && todo.status)}
                                   onToggle={this.toggleTodo.bind(this)}
                 />
             default: break
@@ -105,6 +114,7 @@ class App extends Component {
                              onChange={this.changeList.bind(this)}
                              onSubmit={this.addList.bind(this)}
                              onToggle={this.toggleSidebar.bind(this)}
+                             onChoose={this.changeCurrentList.bind(this)}
               />}
               {!this.state.showSidebar &&
               <div className="sidebar-close">
@@ -117,6 +127,7 @@ class App extends Component {
               <h1>我的待办</h1>
               <h4>工作</h4>
               <TodoInput content={this.state.newTodo}
+                         catgory={this.state.catgory[0]}
                          onChange={this.changeTitle.bind(this)}
                          onSubmit={this.addTodo.bind(this)}
               />

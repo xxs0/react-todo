@@ -12,6 +12,7 @@ export default class TodoInput extends Component{
     render() {
         return (
             <input type="text" value={this.props.content}
+                   content={this.props.catgory}
                    onChange={this.changeTitle.bind(this)}
                    onKeyDown={this.submit.bind(this)}
             />
