@@ -17,8 +17,7 @@ class App extends Component {
             todoList: localStore.load('todolist') || [
                 // {id: 1, title: 'test', status: '', delete:false, catgory:''}
             ],
-            currentCatgory:''
-            ,
+            currentList:'',
             navTab: 0
         }
     }
@@ -42,7 +41,6 @@ class App extends Component {
     changeCurrentList(e) {
         console.log(e)
         this.setState({
-            currentCatgory: e
         })
     }
     addList(e){
@@ -74,6 +72,28 @@ class App extends Component {
         e.status = e.status === 'completed' ? '' : 'completed'
         this.setState(this.state)
     }
+    deleteTodo(e){
+        console.log('删除todo')
+        e.delete = true
+        this.setState(this.state)
+    }
+    deleteList(e){
+        console.log(e)
+        let catgoryLength = this.state.catgory.length
+        if (catgoryLength >= 1) {
+            if (catgoryLength === 1) {
+                alert('请保留至少一个待办事项列表')
+                return
+            } else {
+                if (window.confirm('您的操作将会删除该组下所有待办事项，确认继续？')) {
+                    let number = this.state.catgory.indexOf(e)
+                    this.state.catgory.splice(number, 1)
+                    this.setState(this.state)
+                }
+            }
+        }
+
+    }
     filter () {
     }
 
@@ -86,22 +106,23 @@ class App extends Component {
     renderContent() {
         switch (this.state.navTab) {
             case 0:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && !todo.delete)}
                                   onToggle={this.toggleTodo.bind(this)}
-                />
+                                  onDelete={this.deleteTodo.bind(this)}/>
                 break
             case 1:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && !todo.status)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && !todo.status && !todo.delete)}
                                   onToggle={this.toggleTodo.bind(this)}
-                />
+                                  onDelete={this.deleteTodo.bind(this)}/>
                 break
             case 2:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && todo.status)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && todo.status && !todo.delete)}
                                   onToggle={this.toggleTodo.bind(this)}
-                />
+                                  onDelete={this.deleteTodo.bind(this)}/>
             default: break
         }
     }
+
   componentDidUpdate() {
       localStore.save('catgory', this.state.catgory)
       localStore.save('todolist', this.state.todoList)
@@ -117,11 +138,14 @@ class App extends Component {
                              onSubmit={this.addList.bind(this)}
                              onToggle={this.toggleSidebar.bind(this)}
                              onChoose={this.changeCurrentList.bind(this)}
+                             onDelete={this.deleteList.bind(this)}
               />}
               {!this.state.showSidebar &&
               <div className="sidebar-close">
-                  <span>图像</span>
-                  <button onClick={this.toggleSidebar.bind(this)}>展开</button>
+                  <div className="name">M</div>
+                  <button onClick={this.toggleSidebar.bind(this)}>
+                      <i className="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                  </button>
               </div>
               }
           </div>
@@ -141,8 +165,7 @@ class App extends Component {
               {/*/>*/}
 
               <ContentNav navTab={this.state.navTab}
-                          onTabChange={this.handleTabChange}
-              />
+                          onTabChange={this.handleTabChange}/>
               {this.renderContent()}
           </div>
       </div>

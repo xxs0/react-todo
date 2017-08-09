@@ -1,0 +1,35 @@
+.App-content-todoitem {
+    margin: 20px 5px 0px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+.todoItem {
+
+}
+.todoItem:hover {
+    cursor: pointer;
+    background-color: antiquewhite;
+}
+.todoItem .todoItem-body {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    padding: 0 12px;
+}
+.todoItem .todoItem-body input {
+    padding: 6px;
+}
+.todoItem .todoItem-body div.title-wrapper {
+    padding: 8px 12px;
+    flex: auto;
+    text-align: left;
+}
+.todoItem-body >button {
+    border: 0;
+}
+.todoItem-body >button>i {
+    font-size: 18px;
+    color: red;
+}

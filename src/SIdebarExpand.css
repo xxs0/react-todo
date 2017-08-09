@@ -1,21 +1,38 @@
 .sidebar-header {
     position: relative;
+    display: flex;
+    align-items: center;
+}
+.sidebar-header>button {
+    border: 0;
+}
+.sidebar-header>button>i {
+    font-size: 36px;
+    padding: 15px 10px;
+    border: 0;
+
 }
 .sidebar-header h2{
     font-size: 2em;
-    padding: 10px;
+    padding: 0 .8em;
     background-color: antiquewhite;
 }
 
 .sidebar-header button.logout {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    /*font-size: 16px;*/
+    height: 36px;
+    font-weight: 500;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 3px 6px;
+    margin:0 10px;
 }
+.sidebar-header button:hover {
+    cursor: pointer;
+}
+.sidebar-header button.logout:hover {
+    background-color: aquamarine;
+}
+
 .input-wrapper {
     display: flex;
     padding: 0.6em 1.2em;
@@ -36,15 +53,28 @@
 .sidebar-todolist li {
     padding: .3em .2em;
 }
+.sidebar-todolist li:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
 .list-group-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.list-group-item>i {
-    flex: 1;
+.list-group-item>div.list-catgory {
+    flex: auto;
+    text-align: left;
+    margin-left: 3px;
 }
 .list-group-item>span {
     text-align: left;
     flex: 10;
+}
+
+.sidebar-open>button {
+    border: 0;
+}
+.sidebar-open>button>i {
+    font-size:36px;
 }

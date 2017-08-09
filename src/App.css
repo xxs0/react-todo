@@ -1,30 +1,45 @@
 .App {
   text-align: center;
   display: flex;
-
+  min-height: 100vh;
 }
 
-.App-sidebar, .App-content {
+.App-sidebar,  {
   border:1px solid #ccc;
   flex: 1;
+}
+.App-content {
+  flex: auto;
+  background-color: #f6f8fa;
 }
 
 .App-sidebar {
   max-width: 400px;
-  min-height: 100vh;
 }
-
 
 .sidebar-close {
-
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  align-items: center;
 }
-
-.sidebar-close span {
+.sidebar-close >button {
+  border: 0;
+}
+.sidebar-close >button>i {
+  font-size: 36px;
+  padding: 15px 10px;
+}
+.sidebar-close .name {
+  margin: 20px 5px;
+  border: 1px solid #ccc;
+  font-size: 40px;
+  font-weight: bolder;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  margin: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 50%;
+  line-height: 50px;
+  background-color: cornsilk;
+
 }
 
 .App-content h1 {
