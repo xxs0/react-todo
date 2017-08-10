@@ -58,7 +58,7 @@ class App extends Component {
             title: e.target.value,
             status: '',
             delete: false,
-            catgory: this.state.currentCatgory
+            catgory: this.state.currentList
         }
         this.state.todoList.push(todo)
         this.setState({
@@ -92,9 +92,12 @@ class App extends Component {
                 }
             }
         }
-
     }
     filter () {
+    }
+    switchList(e) {
+        this.state.currentList = e;
+        this.setState(this.state)
     }
 
     handleTabChange = (index) => {
@@ -106,19 +109,20 @@ class App extends Component {
     renderContent() {
         switch (this.state.navTab) {
             case 0:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && !todo.delete)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentList && !todo.delete)}
                                   onToggle={this.toggleTodo.bind(this)}
                                   onDelete={this.deleteTodo.bind(this)}/>
                 break
             case 1:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && !todo.status && !todo.delete)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentList && !todo.status && !todo.delete)}
                                   onToggle={this.toggleTodo.bind(this)}
                                   onDelete={this.deleteTodo.bind(this)}/>
                 break
             case 2:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentCatgory && todo.status && !todo.delete)}
+                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentList && todo.status && !todo.delete)}
                                   onToggle={this.toggleTodo.bind(this)}
                                   onDelete={this.deleteTodo.bind(this)}/>
+                break
             default: break
         }
     }
@@ -126,6 +130,14 @@ class App extends Component {
   componentDidUpdate() {
       localStore.save('catgory', this.state.catgory)
       localStore.save('todolist', this.state.todoList)
+  }
+  init() {
+        this.setState({
+            currentList: this.state.catgory[0]
+        })
+  }
+  componentWillMount() {
+      this.init()
   }
   render() {
     return (
@@ -139,6 +151,7 @@ class App extends Component {
                              onToggle={this.toggleSidebar.bind(this)}
                              onChoose={this.changeCurrentList.bind(this)}
                              onDelete={this.deleteList.bind(this)}
+                             onSwitch={this.switchList.bind(this)}
               />}
               {!this.state.showSidebar &&
               <div className="sidebar-close">
@@ -153,7 +166,7 @@ class App extends Component {
               <h1>我的待办</h1>
               {/*<h4>工作</h4>*/}
               <TodoInput content={this.state.newTodo}
-                         catgory={this.state.catgory[0]}
+                         catgory={this.state.currentList}
                          onChange={this.changeTitle.bind(this)}
                          onSubmit={this.addTodo.bind(this)}
               />

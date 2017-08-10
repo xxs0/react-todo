@@ -32,14 +32,26 @@ export default class SidebarExpand extends Component {
         this.props.onChoose(e)
     }
     switchList(e) {
-        console.log('switch',e)
-
+        console.log('switch')
+        if (e.target === e.currentTarget) {
+            return
+        }
+        this.props.onSwitch(e.target.innerText)
+        let node = e.currentTarget.querySelector('.active')
+        console.log(node)
+        if (node !== null) {
+            node.classList.remove('active')
+        }
+        e.target.parentElement.classList.add('active')
+        this.setState({
+            activeList:e.target.innerText
+        })
     }
     render() {
         let lists = this.props.lists
             .map((list, index) => {
                 return (
-                    <li key={index} className="list-group-item" onClick={this.switchList.bind(this)}>
+                    <li key={index} className="list-group-item">
                         <div>
                             <i className="fa fa-folder fa-fw" aria-hidden="true"></i>
                         </div>
@@ -49,8 +61,7 @@ export default class SidebarExpand extends Component {
                             {/*{list}*/}
                         {/*</span>*/}
                         {/*</div>*/}
-                        <div className="list-catgory"
-                             onClick={this.takeAList.bind(this,list)}>
+                        <div className="list-catgory">
                             {list}
                         </div>
                         <div onClick={this.delete.bind(this, list)}>
@@ -74,7 +85,7 @@ export default class SidebarExpand extends Component {
                            onKeyDown={this.submit.bind(this)}
                     />
                 </div>
-                <ul className="sidebar-todolist list-group">
+                <ul className="sidebar-todolist list-group" onClick={this.switchList.bind(this)}>
                     {/*<li>*/}
                         {/*<div>*/}
                             {/*<span className="list-catgory">所有</span>*/}
