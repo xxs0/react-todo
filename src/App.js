@@ -6,6 +6,9 @@ import ContentNav from './ContentNav'
 import TodoItems from './TodoItems'
 import * as localStore from './localStorage'
 import 'font-awesome/css/font-awesome.min.css'
+import UserDialog from './UserDialog'
+
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -181,6 +184,7 @@ class App extends Component {
                           onTabChange={this.handleTabChange}/>
               {this.renderContent()}
           </div>
+          <UserDialog/>
       </div>
     )
   }
