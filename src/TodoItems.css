@@ -26,6 +26,10 @@
     flex: auto;
     text-align: left;
 }
+.todoItem .todoItem-body div.title-wrapper.finished {
+    text-decoration: line-through;
+    color: #cccccc;
+}
 .todoItem-body >button {
     border: 0;
 }

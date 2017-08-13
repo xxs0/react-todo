@@ -72,9 +72,12 @@ class App extends Component {
     }
     toggleTodo(e, todo){
         console.log('标记todo',todo)
-        console.log(todo.target.parent)
+        console.log(todo.target.parentElement)
+        let input = todo.target.parentElement
+        id = input.parentElement.querySelector('.title-wrapper')
         e.status = e.status === 'completed' ? '' : 'completed'
         this.setState(this.state)
+
     }
     deleteTodo(e){
         console.log('删除todo')

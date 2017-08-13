@@ -10,9 +10,9 @@ export default function({todos, onToggle, onDelete}) {
                         <div className="todoItem-body">
                             <div>
                                 <input type="checkbox" checked={todo.status === 'completed'}
-                                       />
+                                />
                             </div>
-                            <div className="title-wrapper">
+                            <div className={`title-wrapper ` + (todo.status === 'completed' ? 'finished' : '')}>
                                 <span>{todo.title}</span>
                             </div>
                             <button onClick={onDelete.bind(null, todo)}>
