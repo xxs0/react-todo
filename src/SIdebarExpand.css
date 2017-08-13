@@ -2,9 +2,11 @@
     position: relative;
     display: flex;
     align-items: center;
+    background-color: blanchedalmond;
 }
 .sidebar-header>button {
     border: 0;
+    background-color: transparent;
 }
 .sidebar-header>button>i {
     font-size: 36px;

@@ -24,10 +24,14 @@
 }
 .sidebar-close >button {
   border: 0;
+  background-color: blanchedalmond;
 }
 .sidebar-close >button>i {
   font-size: 36px;
-  padding: 15px 10px;
+  padding: 15px;
+}
+.sidebar-close >button:hover {
+  cursor: pointer;
 }
 .sidebar-close .name {
   margin: 20px 5px;

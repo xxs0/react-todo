@@ -6,7 +6,7 @@ import ContentNav from './ContentNav'
 import TodoItems from './TodoItems'
 import * as localStore from './localStorage'
 import 'font-awesome/css/font-awesome.min.css'
-import UserDialog from './UserDialog'
+// import UserDialog from './UserDialog'
 
 
 class App extends Component {
@@ -70,8 +70,9 @@ class App extends Component {
         })
         console.log(this.state)
     }
-    toggleTodo(e){
-        console.log('标记todo')
+    toggleTodo(e, todo){
+        console.log('标记todo',todo)
+        console.log(todo.target.parent)
         e.status = e.status === 'completed' ? '' : 'completed'
         this.setState(this.state)
     }
@@ -184,7 +185,7 @@ class App extends Component {
                           onTabChange={this.handleTabChange}/>
               {this.renderContent()}
           </div>
-          <UserDialog/>
+          {/*<UserDialog/>*/}
       </div>
     )
   }

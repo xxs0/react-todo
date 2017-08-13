@@ -6,14 +6,12 @@ export default function({todos, onToggle, onDelete}) {
         <ol className="App-content-todoitem">
             {
                 todos.map(todo =>
-                    <li key={todo.id} className="todoItem">
+                    <li key={todo.id} className="todoItem" onChange={onToggle.bind(null, todo)}>
                         <div className="todoItem-body">
                             <div>
                                 <input type="checkbox" checked={todo.status === 'completed'}
-                                       onChange={onToggle.bind(null, todo)}
-                                />
+                                       />
                             </div>
-
                             <div className="title-wrapper">
                                 <span>{todo.title}</span>
                             </div>
@@ -26,5 +24,4 @@ export default function({todos, onToggle, onDelete}) {
             }
         </ol>
     )
-
 }
