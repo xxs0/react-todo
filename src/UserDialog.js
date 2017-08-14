@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './UserDialog.css'
 import SignInOrSignUp from "./SignInOrSignUp"
-
+import {signUp, signIn} from "./leanCloud"
 
 export default class UserDiag extends Component {
     constructor(props) {
@@ -15,14 +15,29 @@ export default class UserDiag extends Component {
             }
         }
     }
-    signUp(){
-
+    signUp(e){
+        console.log('q')
+        e.preventDefault()
+        let {email, username, password} = this.state.formData,
+            success = (user) => {
+                console.log(user)
+            },
+            error = (user) => {
+                console.log(error)
+            }
+        signUp(email, username, password, success, error)
     }
-    signIn(){
+    signIn(e){
+        e.preventDefault()
+        let {username, password} = this.state.formData,
+            success = (user) => {
 
+            }
     }
-    changeFormData() {
-
+    changeFormData(key, e) {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.formData[key] = e.target.value
+        this.setState(stateCopy)
     }
     render() {
         return(

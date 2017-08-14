@@ -4,22 +4,20 @@ import SidebarExpand from "./SidebarExpand";
 import TodoInput from "./TodoInput"
 import ContentNav from './ContentNav'
 import TodoItems from './TodoItems'
-import * as localStore from './localStorage'
 import 'font-awesome/css/font-awesome.min.css'
-// import UserDialog from './UserDialog'
-
+import UserDialog from './UserDialog'
+import {getCurrentUser, signOut} from "./leanCloud"
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            user: getCurrentUser() || {},
             newList: '列表',
             showSidebar: true,
             newTodo: 'todo',
-            catgory: localStore.load('catgory') || ['家务'],
-            todoList: localStore.load('todolist') || [
-                // {id: 1, title: 'test', status: '', delete:false, catgory:''}
-            ],
+            catgory:  ['家务'],
+            todoList: [],
             currentList:'',
             navTab: 0
         }
@@ -135,8 +133,6 @@ class App extends Component {
     }
 
   componentDidUpdate() {
-      localStore.save('catgory', this.state.catgory)
-      localStore.save('todolist', this.state.todoList)
   }
   init() {
         this.setState({
@@ -145,6 +141,11 @@ class App extends Component {
   }
   componentWillMount() {
       this.init()
+  }
+  onSignUpOrSignIn(user) {
+      let stateCopy = JSON.parse(JSON.stringify(this.state))
+      stateCopy.user = user
+      this.state(stateCopy)
   }
   render() {
     return (
@@ -188,7 +189,9 @@ class App extends Component {
                           onTabChange={this.handleTabChange}/>
               {this.renderContent()}
           </div>
-          {/*<UserDialog/>*/}
+          {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)}
+                                                   onSignIn={this.onSignUpOrSignIn.bind(this)}
+          />}
       </div>
     )
   }

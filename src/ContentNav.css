@@ -15,3 +15,7 @@
 .App-content-nav>li:hover {
     cursor: pointer;
 }
+
+.App-content .App-content-nav .selected {
+    background-color: red;
+}
