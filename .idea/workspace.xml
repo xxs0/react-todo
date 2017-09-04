@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="467e8984-b017-4ebc-a7fc-d0da6ce6d7fb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/App.test.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Content.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ContentInput.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ContentTodoItemContainer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Sidebar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/localStorage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/logo.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/registerServiceWorker.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/SIdebarExpand.css" afterPath="$PROJECT_DIR$/src/SidebarExpand.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.css" afterPath="$PROJECT_DIR$/src/App.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContentNav.css" afterPath="$PROJECT_DIR$/src/ContentNav.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContentNav.js" afterPath="$PROJECT_DIR$/src/ContentNav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ForgotPasswordForm.js" afterPath="$PROJECT_DIR$/src/ForgotPasswordForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SidebarExpand.js" afterPath="$PROJECT_DIR$/src/SidebarExpand.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SignInForm.js" afterPath="$PROJECT_DIR$/src/SignInForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SignInOrSignUp.js" afterPath="$PROJECT_DIR$/src/SignInOrSignUp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SignUpForm.js" afterPath="$PROJECT_DIR$/src/SignUpForm.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TodoInput.js" afterPath="$PROJECT_DIR$/src/TodoInput.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TodoItems.css" afterPath="$PROJECT_DIR$/src/TodoItems.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TodoItems.js" afterPath="$PROJECT_DIR$/src/TodoItems.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserDialog.css" afterPath="$PROJECT_DIR$/src/UserDialog.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserDialog.js" afterPath="$PROJECT_DIR$/src/UserDialog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.css" afterPath="$PROJECT_DIR$/src/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/leanCloud.js" afterPath="$PROJECT_DIR$/src/leanCloud.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -58,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -70,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/src/UserDialog.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -82,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="354">
-              <caret line="63" column="22" lean-forward="true" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+              <caret line="63" column="22" lean-forward="false" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -102,17 +76,27 @@
         <entry file="file://$PROJECT_DIR$/src/leanCloud.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-261">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserDialog.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserDialog.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserDialog.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="420">
+              <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -122,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" column="90" lean-forward="true" selection-start-line="4" selection-start-column="90" selection-end-line="4" selection-end-column="90" />
+              <caret line="4" column="90" lean-forward="false" selection-start-line="4" selection-start-column="90" selection-end-line="4" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -199,6 +183,7 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/UserDialog.js" />
         <option value="$PROJECT_DIR$/src/UserDialog.css" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -307,12 +292,12 @@
       <workItem from="1503716075308" duration="569000" />
       <workItem from="1503826484672" duration="1753000" />
       <workItem from="1504071735424" duration="23637000" />
-      <workItem from="1504451428045" duration="15454000" />
+      <workItem from="1504451428045" duration="15580000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165675000" />
+    <option name="totallyTimeSpent" value="165801000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -389,7 +374,7 @@
         <state relative-caret-position="1080">
           <caret line="73" column="42" lean-forward="false" selection-start-line="73" selection-start-column="42" selection-end-line="73" selection-end-column="42" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -464,7 +449,7 @@
         <state relative-caret-position="420">
           <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -513,7 +498,7 @@
         <state relative-caret-position="600">
           <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -530,13 +515,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -603,7 +581,7 @@
         <state relative-caret-position="60">
           <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -669,7 +647,7 @@
         <state relative-caret-position="-108">
           <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,7 +665,7 @@
         <state relative-caret-position="786">
           <caret line="75" column="22" lean-forward="false" selection-start-line="75" selection-start-column="22" selection-end-line="75" selection-end-column="22" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -711,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
-          <caret line="63" column="22" lean-forward="true" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+          <caret line="63" column="22" lean-forward="false" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -719,7 +697,7 @@
     <entry file="file://$PROJECT_DIR$/src/leanCloud.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-261">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -727,7 +705,7 @@
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="90" lean-forward="true" selection-start-line="4" selection-start-column="90" selection-end-line="4" selection-end-column="90" />
+          <caret line="4" column="90" lean-forward="false" selection-start-line="4" selection-start-column="90" selection-end-line="4" selection-end-column="90" />
           <folding />
         </state>
       </provider>
@@ -758,7 +736,7 @@
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -768,7 +746,7 @@
     <entry file="file://$PROJECT_DIR$/src/UserDialog.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -777,8 +755,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserDialog.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        <state relative-caret-position="420">
+          <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="55" lean-forward="false" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
           <folding />
         </state>
       </provider>
