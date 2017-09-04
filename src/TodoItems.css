@@ -6,10 +6,9 @@
 
 
 .todoItem {
-
+    border-bottom: 1px solid #ccc;
 }
 .todoItem:hover {
-    cursor: pointer;
     background-color: antiquewhite;
 }
 .todoItem .todoItem-body {
@@ -32,8 +31,14 @@
 }
 .todoItem-body >button {
     border: 0;
+    opacity: 0;
 }
+
 .todoItem-body >button>i {
     font-size: 18px;
     color: red;
+}
+
+.todoItem-body:hover > button {
+    opacity: 1;
 }

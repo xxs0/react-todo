@@ -1,63 +1,84 @@
 .App {
-  text-align: center;
-  display: flex;
-  min-height: 100vh;
-}
-
-.App-sidebar,  {
-  border:1px solid #ccc;
-  flex: 1;
-}
-.App-content {
-  flex: auto;
-  background-color: #f6f8fa;
+    text-align: center;
+    display: flex;
+    min-height: 100vh;
 }
 
 .App-sidebar {
-  max-width: 400px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    flex: 20%;
+}
+
+.App-content {
+    flex: auto;
+    background-color: #f6f8fa;
+}
+
+.App-sidebar {
+    max-width: 400px;
 }
 
 .sidebar-close {
-  display: flex;
-  flex-flow: column-reverse nowrap;
-  align-items: center;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;
 }
-.sidebar-close >button {
-  border: 0;
-  background-color: blanchedalmond;
+
+.sidebar-close > button {
+    border: 0;
+    background-color: blanchedalmond;
+    outline: none;
 }
-.sidebar-close >button>i {
-  font-size: 36px;
-  padding: 15px;
+
+.sidebar-close > button > i {
+    font-size: 36px;
+    padding: 15px;
 }
-.sidebar-close >button:hover {
-  cursor: pointer;
+
+.sidebar-close > button:hover {
+    cursor: pointer;
 }
+
 .sidebar-close .name {
-  margin: 20px 5px;
-  border: 1px solid #ccc;
-  font-size: 40px;
-  font-weight: bolder;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  background-color: cornsilk;
+    margin: 20px 5px;
+    border: 1px solid #ccc;
+    font-size: 40px;
+    font-weight: bolder;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: cornsilk;
 
 }
-
-.App-content h1 {
-  background-color: #fdcc33;
-  padding: 10px 5px;
+.App-content .App-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fdcc33;
+    padding: 1px 8px;
 }
 
-.App-content > input {
-  /*min-width: 500px;*/
-  margin: 12px 12px;
-  min-width: 100%;
-  height: 40px;
-  border: 0;
-  background: blueviolet;
-  display: block;
-  font-size: 28px;
+.App-content .App-content-header h1 {
+    /*background-color: #fdcc33;*/
+    padding: 10px 5px;
+}
+
+.App-content .todoInputWrapper {
+    margin: 12px;
+    display: flex;
+}
+
+.App-content .todoInputWrapper input {
+    flex: 1;
+    padding: 8px;
+    border: 0;
+    font-size: 28px;
+    outline: none;
+}
+
+.App-content .todoInputWrapper input::placeholder {
+    font-size: 18px;
+    line-height: 49px;
+    color: #ccc;
 }

@@ -11,11 +11,14 @@ export default class TodoInput extends Component{
     }
     render() {
         return (
-            <input type="text" value={this.props.content}
-                   content={this.props.catgory}
-                   onChange={this.changeTitle.bind(this)}
-                   onKeyDown={this.submit.bind(this)}
-            />
+            <div className="todoInputWrapper">
+                <input type="text" value={this.props.content} placeholder="输入新的待办事项，按Enter添加"
+                       // content={this.props.catgory}
+                       onChange={this.changeTitle.bind(this)}
+                       onKeyDown={this.submit.bind(this)}
+                />
+            </div>
+
         )
     }
 

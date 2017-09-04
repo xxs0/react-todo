@@ -4,28 +4,31 @@ export default (props) => {
     return (
         <form className="signUp" onSubmit={props.onSubmit}>
             <div className="row">
-                <label>邮箱</label>
-            </div>
-            <div className="row">
-                <input type="text" value={props.formData.email}
+                <label>
+                    <i className="fa fa-envelope-o" aria-hidden="true"></i>
+                </label>
+                <input type="text" placeholder="邮箱"
+                       value={props.formData.email}
                        onChange={props.onChange.bind(null, 'email')}/>
             </div>
             <div className="row">
-                <label>用户名</label>
-            </div>
-            <div className="row">
-                <input type="text" value={props.formData.username}
+                <label>
+                    <i className="fa fa-user-o" aria-hidden="true"></i>
+                </label>
+                <input type="text" placeholder="用户名"
+                       value={props.formData.username}
                        onChange={props.onChange.bind(null, 'username')}/>
             </div>
             <div className="row">
-                <label>密码</label>
-            </div>
-            <div className="row">
-                <input type="password" value={props.formData.password}
+                <label>
+                    <i className="fa fa-key" aria-hidden="true"></i>
+                </label>
+                <input type="password" placeholder="密码"
+                       value={props.formData.password}
                        onChange={props.onChange.bind(null, 'password')}/>
             </div>
             <div className="row">
-                <label>注册</label>
+                <button>注册</button>
             </div>
         </form>
     )

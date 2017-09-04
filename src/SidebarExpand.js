@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
-import './SIdebarExpand.css'
+import './SidebarExpand.css'
+import ContentNav from './ContentNav'
+
 export default class SidebarExpand extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            activeList:''
+            activeList:'',
         }
     }
     toggleSidebar() {
@@ -24,9 +26,7 @@ export default class SidebarExpand extends Component {
         console.log('删除这个list')
         this.props.onDelete(e)
     }
-    filter() {
 
-    }
     takeAList(e) {
         console.log('take')
         this.props.onChoose(e)
@@ -47,6 +47,7 @@ export default class SidebarExpand extends Component {
             activeList:e.target.innerText
         })
     }
+
     render() {
         let lists = this.props.lists
             .map((list, index) => {
@@ -55,12 +56,6 @@ export default class SidebarExpand extends Component {
                         <div>
                             <i className="fa fa-folder fa-fw" aria-hidden="true"></i>
                         </div>
-                        {/*<div>*/}
-                            {/*<span className="list-catgory"*/}
-                                  {/*onClick={this.takeAList.bind(this,list)}>*/}
-                            {/*{list}*/}
-                        {/*</span>*/}
-                        {/*</div>*/}
                         <div className="list-catgory">
                             {list}
                         </div>
@@ -76,23 +71,11 @@ export default class SidebarExpand extends Component {
                     <button onClick={this.toggleSidebar.bind(this)}>
                         <i className="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
                     </button>
-                    <h2>Mac public</h2>
-                    <button className="logout">登出</button>
+                    <h2>{this.props.user.username || '路人甲'}</h2>
+                    {this.props.user.id ? <button className="logout" onClick={this.props.onSignOut}>登出</button> : null}
                 </div>
-                <div className="input-wrapper">
-                    <input type="text" value={this.props.content}
-                           onChange={this.changeList.bind(this)}
-                           onKeyDown={this.submit.bind(this)}
-                    />
-                </div>
-                <ul className="sidebar-todolist list-group" onClick={this.switchList.bind(this)}>
-                    {/*<li>*/}
-                        {/*<div>*/}
-                            {/*<span className="list-catgory">所有</span>*/}
-                        {/*</div>*/}
-                    {/*</li>*/}
-                    {lists}
-                </ul>
+                <ContentNav navTab={this.props.navTab}
+                            onTabChange={this.props.onTabChange.bind(this)}/>
 
             </div>
         )

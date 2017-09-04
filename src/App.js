@@ -1,105 +1,87 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import './App.css'
 import SidebarExpand from "./SidebarExpand";
 import TodoInput from "./TodoInput"
-import ContentNav from './ContentNav'
 import TodoItems from './TodoItems'
 import 'font-awesome/css/font-awesome.min.css'
 import UserDialog from './UserDialog'
-import {getCurrentUser, signOut} from "./leanCloud"
+import {AV,getCurrentUser, signOut, TodoModel} from "./leanCloud"
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
             user: getCurrentUser() || {},
-            newList: '列表',
             showSidebar: true,
-            newTodo: 'todo',
-            catgory:  ['家务'],
+            newTodo: '',
             todoList: [],
-            currentList:'',
             navTab: 0
         }
+        let user = getCurrentUser()
+        if (user) {
+            TodoModel.getByUser(user, (todos) => {
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = todos
+                this.setState(stateCopy)
+            })
+        }
     }
+
     toggleSidebar() {
         this.setState({
-            showSidebar:!this.state.showSidebar
+            showSidebar: !this.state.showSidebar
         })
     }
-    changeList(e) {
-        console.log(e.target.value)
-        this.setState({
-            newList: e.target.value
-        })
-    }
+
     changeTitle(e) {
         console.log(e.target.value)
         this.setState({
-            newTodo:e.target.value
+            newTodo: e.target.value
         })
     }
-    changeCurrentList(e) {
-        console.log(e)
-        this.setState({
-        })
-    }
-    addList(e){
-        let list = e.target.value
-        this.state.catgory.push(list)
-        this.setState({
-            newList: '',
-            catgory: this.state.catgory
-        })
-    }
+
     addTodo(e) {
         console.log('增加:', e.target.value, e)
-        let todo = {
-            id: idMaker(),
+        let newItem = {
             title: e.target.value,
             status: '',
-            delete: false,
-            catgory: this.state.currentList
+            deleted: false
         }
-        this.state.todoList.push(todo)
-        this.setState({
-            newTodo: '',
-            todoList: this.state.todoList
+        console.log('newItem', newItem)
+        TodoModel.create(newItem, (id) => {
+            newItem.id = id
+            this.state.todoList.push(newItem)
+            this.setState({
+                newTodo: '',
+                todoList: this.state.todoList
+            })
+            console.log('完成创建，', this.state)
+        }, (error) => {
+            console.log(error)
         })
-        console.log(this.state)
     }
-    toggleTodo(e, todo){
-        console.log('标记todo',todo)
-        console.log(todo.target.parentElement)
-        let input = todo.target.parentElement
-        id = input.parentElement.querySelector('.title-wrapper')
-        e.status = e.status === 'completed' ? '' : 'completed'
-        this.setState(this.state)
 
+    toggleTodo(e) {
+        console.log('标记todo', e)
+        let oldStatus = e.status
+        e.status = e.status === 'completed' ? '' : 'completed'
+
+        TodoModel.update(e, () => {
+            this.setState(this.state)
+        }, (error) => {
+            e.status = oldStatus
+            this.setState(this.state)
+        })
     }
-    deleteTodo(e){
+
+    deleteTodo(e) {
         console.log('删除todo')
-        e.delete = true
-        this.setState(this.state)
+        TodoModel.destroy(e.id, () => {
+            e.deleted = true
+            this.setState(this.state)
+        })
     }
-    deleteList(e){
-        console.log(e)
-        let catgoryLength = this.state.catgory.length
-        if (catgoryLength >= 1) {
-            if (catgoryLength === 1) {
-                alert('请保留至少一个待办事项列表')
-                return
-            } else {
-                if (window.confirm('您的操作将会删除该组下所有待办事项，确认继续？')) {
-                    let number = this.state.catgory.indexOf(e)
-                    this.state.catgory.splice(number, 1)
-                    this.setState(this.state)
-                }
-            }
-        }
-    }
-    filter () {
-    }
+
     switchList(e) {
         this.state.currentList = e;
         this.setState(this.state)
@@ -111,95 +93,109 @@ class App extends Component {
         })
         console.log('tab切换：', this.state.navTab)
     }
+
     renderContent() {
         switch (this.state.navTab) {
             case 0:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentList && !todo.delete)}
-                                  onToggle={this.toggleTodo.bind(this)}
-                                  onDelete={this.deleteTodo.bind(this)}/>
+                return <TodoItems
+                    todos={this.state.todoList.filter(todo => !todo.status && !todo.deleted)}
+                    onToggle={this.toggleTodo.bind(this)}
+                    onDelete={this.deleteTodo.bind(this)}/>
                 break
             case 1:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentList && !todo.status && !todo.delete)}
-                                  onToggle={this.toggleTodo.bind(this)}
-                                  onDelete={this.deleteTodo.bind(this)}/>
+                return <TodoItems
+                    todos={this.state.todoList.filter(todo => todo.status && !todo.deleted)}
+                    onToggle={this.toggleTodo.bind(this)}
+                    onDelete={this.deleteTodo.bind(this)}/>
                 break
             case 2:
-                return <TodoItems todos={this.state.todoList.filter(todo => todo.catgory === this.state.currentList && todo.status && !todo.delete)}
-                                  onToggle={this.toggleTodo.bind(this)}
-                                  onDelete={this.deleteTodo.bind(this)}/>
+                return <TodoItems
+                    todos={this.state.todoList.filter(todo => !todo.deleted)}
+                    onToggle={this.toggleTodo.bind(this)}
+                    onDelete={this.deleteTodo.bind(this)}/>
                 break
-            default: break
+            default:
+                break
         }
     }
 
-  componentDidUpdate() {
-  }
-  init() {
-        this.setState({
-            currentList: this.state.catgory[0]
-        })
-  }
-  componentWillMount() {
-      this.init()
-  }
-  onSignUpOrSignIn(user) {
-      let stateCopy = JSON.parse(JSON.stringify(this.state))
-      stateCopy.user = user
-      this.state(stateCopy)
-  }
-  render() {
-    return (
-      <div className="App">
-          <div className="App-sidebar">
-              { this.state.showSidebar &&
-              <SidebarExpand lists={this.state.catgory}
-                             content={this.state.newList}
-                             onChange={this.changeList.bind(this)}
-                             onSubmit={this.addList.bind(this)}
-                             onToggle={this.toggleSidebar.bind(this)}
-                             onChoose={this.changeCurrentList.bind(this)}
-                             onDelete={this.deleteList.bind(this)}
-                             onSwitch={this.switchList.bind(this)}
-              />}
-              {!this.state.showSidebar &&
-              <div className="sidebar-close">
-                  <div className="name">M</div>
-                  <button onClick={this.toggleSidebar.bind(this)}>
-                      <i className="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-                  </button>
-              </div>
-              }
-          </div>
-          <div className="App-content">
-              <h1>我的待办</h1>
-              {/*<h4>工作</h4>*/}
-              <TodoInput content={this.state.newTodo}
-                         catgory={this.state.currentList}
-                         onChange={this.changeTitle.bind(this)}
-                         onSubmit={this.addTodo.bind(this)}
-              />
-              {/*<ContentTodoItemContainer todos={this.state.todoList}*/}
-                               {/*content={this.state.newTodo}*/}
-                               {/*onChange={this.changeTitle.bind(this)}*/}
-                               {/*onSubmit={this.addTodo.bind(this)}*/}
-                               {/*onToggle={this.toggleTodo.bind(this)}*/}
-              {/*/>*/}
 
-              <ContentNav navTab={this.state.navTab}
-                          onTabChange={this.handleTabChange}/>
-              {this.renderContent()}
-          </div>
-          {this.state.user.id ? null : <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this)}
-                                                   onSignIn={this.onSignUpOrSignIn.bind(this)}
-          />}
-      </div>
-    )
-  }
+
+    onSignUpOrSignIn(key, user) {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.user = user
+        if (key === 'signUp') {
+            console.log('开始注册')
+            this.setState(stateCopy)
+        } else  if (key === 'signIn') {
+            // this.fetchData.call(this)
+            console.log('登录开始')
+            TodoModel.getByUser(user, (todos) => {
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = todos
+                console.log(todos)
+                this.setState(stateCopy)
+            })
+            let stateCopy = JSON.parse(JSON.stringify(this.state))
+            stateCopy.user = getCurrentUser()
+            this.setState(stateCopy)
+        }
+    }
+
+    signOut() {
+        signOut()
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.user = {}
+        this.setState(stateCopy)
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <div className="App-sidebar">
+                    {this.state.showSidebar &&
+                    <SidebarExpand user={this.state.user}
+                                   navTab={this.state.navTab}
+                                   onTabChange={this.handleTabChange}
+
+                                   lists={this.state.todoList}
+                                   // content={this.state.newList}
+                        // onChange={this.changeList.bind(this)}
+                        // onSubmit={this.addList.bind(this)}
+                                   onToggle={this.toggleSidebar.bind(this)}
+                        // onChoose={this.changeCurrentList.bind(this)}
+                        // onDelete={this.deleteList.bind(this)}
+                                   onSwitch={this.switchList.bind(this)}
+                                   onSignOut={this.signOut.bind(this)}/>}
+                    {!this.state.showSidebar &&
+                    <div className="sidebar-close">
+                        <div className="name">{this.state.user.username.charAt(0)}</div>
+                        <button onClick={this.toggleSidebar.bind(this)}>
+                            <i className="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    }
+                </div>
+                <div className="App-content">
+                    <div className="App-content-header">
+                        <h1>{this.state.user.username || '我'}的待办</h1>
+                        <p>{new Date().getFullYear()}年 {new Date().getMonth()+1}月 {new Date().getDate()}日</p>
+                    </div>
+
+                    <TodoInput content={this.state.newTodo}
+                               // category={this.state.currentList}
+                               onChange={this.changeTitle.bind(this)}
+                               onSubmit={this.addTodo.bind(this)}
+                    />
+                    {this.renderContent()}
+                </div>
+                {this.state.user.id ?
+                    null : <UserDialog onSignUp={this.onSignUpOrSignIn.bind(this, 'signUp')}
+                                       onSignIn={this.onSignUpOrSignIn.bind(this, 'signIn')}/>
+                }
+            </div>
+        )
+    }
 }
 
-let id = 0
-function idMaker() {
-    id += 1
-    return id
-}
 export default App;

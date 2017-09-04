@@ -1,12 +1,14 @@
 .sidebar-header {
     position: relative;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: blanchedalmond;
 }
 .sidebar-header>button {
     border: 0;
     background-color: transparent;
+    outline: none;
 }
 .sidebar-header>button>i {
     font-size: 36px;
